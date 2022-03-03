@@ -11,13 +11,13 @@ class Leveraged(IStrategy):
     minimal_roi = { "0": 0.25 }
 
     stoploss = -0.05
-    
+
     trailing_stop = True
 
     sell_profit_only=True
 
     timeframe = '1m'
-    
+
 ## INIZIO gestione dual timing
     informative_timeframe = '15m'
 
@@ -62,7 +62,7 @@ class Leveraged(IStrategy):
 
         # Use a minimum of 2.5% and a maximum of 5%
         return max(min(desired_stoploss, 0.10), 0.015)
-    
+
 ### FINE  Trailing stoploss with positive offset
 
     def do_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
@@ -74,7 +74,7 @@ class Leveraged(IStrategy):
         dataframe['cci'] = ta.CCI(dataframe)
 
         return dataframe
-        
+
 #        dataframe['ema3'] = ta.EMA(dataframe, timeperiod=3)
 #        dataframe['ema5'] = ta.EMA(dataframe, timeperiod=5)
 #        dataframe['go_long'] = qtpylib.crossed_above(dataframe['ema3'], dataframe['ema5']).astype('int')
