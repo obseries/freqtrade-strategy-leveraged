@@ -76,7 +76,7 @@ jobs:
         run: |
           mkdir artifacts
           chmod 777 artifacts
-          docker-compose run --rm tests
+#          docker-compose run --rm tests
 
       - name: List Artifacts
         run: |
