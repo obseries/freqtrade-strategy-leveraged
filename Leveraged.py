@@ -66,7 +66,7 @@ class Leveraged(IStrategy):
 ### FINE  Trailing stoploss with positive offset
 
     def do_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        
+
         macd = ta.MACD(dataframe)
         dataframe['macd'] = macd['macd']
         dataframe['macdsignal'] = macd['macdsignal']
