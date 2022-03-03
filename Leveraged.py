@@ -8,7 +8,10 @@ import datetime
 
 class Leveraged(IStrategy):
 
-    minimal_roi = { "0": 0.25 }
+    def version(self) -> str:
+        return "v0.0.2"
+
+    minimal_roi = { "0": 100 }
 
     stoploss = -0.05
 
