@@ -25,11 +25,34 @@ services:
 
     command: >
       backtesting
-      --datadir user_data/data/${EXCHANGE:-binance}
+      --datadir user_data/data/${EXCHANGE:-kucoin}
       --strategy-list Leveraged 
-      --timerange ${TIMERANGE:-20210201-20210301}
-      --config user_data/data/pairlists.json
-      --config user_data/data/${EXCHANGE:-binance}-usdt-static.json
-      --max-open-trades ${MAX_OPEN_TRADES:-120}
+      --timerange ${TIMERANGE:-20211101-20211201}
+      --config user_data/pairlists.json
+      --config user_data/data/${EXCHANGE:-kucoin}-usdt-static.json
+      --max-open-trades ${MAX_OPEN_TRADES:-50}
       --stake-amount ${STAKE_AMOUNT:-unlimited}
-      --starting-balance ${STARTING_BALANCE:-10000}
+      --starting-balance ${STARTING_BALANCE:-1000}
+
+  hyperopt:
+    build:
+       context: .
+       dockerfile: "./docker/Dockerfile.custom"
+    container_name: freqtrade-hyperopt
+    volumes:
+      - "./user_data:/freqtrade/user_data"
+      - "./Leveraged.py:/freqtrade/Leveraged.py"
+
+##      --timerange ${TIMERANGE:-20210601-20210701}
+
+    command: >
+      hyperopt
+      --hyperopt-loss SharpeHyperOptLoss --spaces buy roi trailing sell
+      --datadir user_data/data/${EXCHANGE:-binance}
+      --strategy Leveraged 
+      --timerange ${TIMERANGE:-20211101-20211201}
+      --config user_data/pairlists.json
+      --config user_data/data/${EXCHANGE:-binance}-usdt-static.json
+      --max-open-trades ${MAX_OPEN_TRADES:-50}
+      --stake-amount ${STAKE_AMOUNT:-unlimited}
+      --starting-balance ${STARTING_BALANCE:-1000}
