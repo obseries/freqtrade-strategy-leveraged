@@ -26,7 +26,7 @@ services:
     command: >
       backtesting
       --datadir user_data/data/${EXCHANGE:-kucoin}
-      --strategy-list Leveraged 
+      --strategy-list Leveraged
       --timerange ${TIMERANGE:-20211101-20211201}
       --config user_data/pairlists.json
       --config user_data/data/${EXCHANGE:-kucoin}-usdt-static.json
@@ -49,7 +49,7 @@ services:
       hyperopt
       --hyperopt-loss SharpeHyperOptLoss --spaces buy roi trailing sell
       --datadir user_data/data/${EXCHANGE:-binance}
-      --strategy Leveraged 
+      --strategy Leveraged
       --timerange ${TIMERANGE:-20211101-20211201}
       --config user_data/pairlists.json
       --config user_data/data/${EXCHANGE:-binance}-usdt-static.json

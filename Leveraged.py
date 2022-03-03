@@ -84,7 +84,7 @@ class Leveraged(IStrategy):
     def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']) 
+                qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])
                 #& (dataframe['cci'] <= -50.0)
             ),
             'buy'] = 1
@@ -101,7 +101,7 @@ class Leveraged(IStrategy):
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                qtpylib.crossed_below(dataframe['macd'], dataframe['macdsignal']) 
+                qtpylib.crossed_below(dataframe['macd'], dataframe['macdsignal'])
                 #& (dataframe['cci'] >= 100.0)
             ),
             'sell'] = 1
