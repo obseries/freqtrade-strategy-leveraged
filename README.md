@@ -53,6 +53,13 @@ Ensure that you don't override any variables in you config.json. Especially the 
 docker-compose up backtesting
 ```
 
+## Pre commit
+
+```bash
+pip3 install pre-commit
+pre-commit run --all-files
+```
+
 ## Donations
 
 Absolutely not required. However, will be accepted as a token of appreciation.

@@ -45,10 +45,6 @@ def timerange_fmt(value):
 
 @pytest.fixture(
     params=(
-        Timerange("20210101", "20210201"),
-        Timerange("20210201", "20210301"),
-        Timerange("20210301", "20210401"),
-        Timerange("20210401", "20210501"),
         Timerange("20210501", "20210601"),
         Timerange("20210601", "20210701"),
         Timerange("20210701", "20210801"),
@@ -57,6 +53,7 @@ def timerange_fmt(value):
         Timerange("20211001", "20211101"),
         Timerange("20211101", "20211201"),
         Timerange("20211201", "20220101"),
+        Timerange("20220101", "20220201"),
     ),
     ids=timerange_fmt,
 )
@@ -67,29 +64,16 @@ def timerange(request):
 @pytest.fixture(scope="session")
 def deviations():
     return {
-        "binance": {
-            ("20210101", "20210201"): {"max_drawdown": 20, "winrate": 90},
-            ("20210201", "20210301"): {"max_drawdown": 35, "winrate": 90},
-            ("20210301", "20210401"): {"max_drawdown": 20, "winrate": 90},
-            ("20210401", "20210501"): {"max_drawdown": 20, "winrate": 90},
-            ("20210501", "20210601"): {"max_drawdown": 35, "winrate": 90},
-            ("20210601", "20210701"): {"max_drawdown": 20, "winrate": 90},
-            ("20210701", "20210801"): {"max_drawdown": 20, "winrate": 90},
-            ("20210801", "20210901"): {"max_drawdown": 20, "winrate": 90},
-            ("20210901", "20211001"): {"max_drawdown": 20, "winrate": 85},
-            ("20211001", "20211101"): {"max_drawdown": 20, "winrate": 85},
-            ("20211201", "20220101"): {"max_drawdown": 30, "winrate": 75},
-        },
         "kucoin": {
-            ("20210201", "20210301"): {"max_drawdown": 20, "winrate": 85},
-            ("20210301", "20210401"): {"max_drawdown": 20, "winrate": 85},
-            ("20210401", "20210501"): {"max_drawdown": 20, "winrate": 85},
-            ("20210501", "20210601"): {"max_drawdown": 30, "winrate": 85},
-            ("20210601", "20210701"): {"max_drawdown": 20, "winrate": 85},
-            ("20210701", "20210801"): {"max_drawdown": 20, "winrate": 85},
-            ("20210801", "20210901"): {"max_drawdown": 20, "winrate": 85},
-            ("20210901", "20211001"): {"max_drawdown": 20, "winrate": 80},
-            ("20211001", "20211101"): {"max_drawdown": 20, "winrate": 85},
+            ("20210501", "20210601"): {"max_drawdown": 930, "winrate": 15},
+            ("20210601", "20210701"): {"max_drawdown": 920, "winrate": 15},
+            ("20210701", "20210801"): {"max_drawdown": 920, "winrate": 15},
+            ("20210801", "20210901"): {"max_drawdown": 920, "winrate": 15},
+            ("20210901", "20211001"): {"max_drawdown": 920, "winrate": 10},
+            ("20211001", "20211101"): {"max_drawdown": 920, "winrate": 15},
+            ("20211101", "20211201"): {"max_drawdown": 920, "winrate": 15},
+            ("20211201", "20220101"): {"max_drawdown": 920, "winrate": 10},
+            ("20220101", "20220201"): {"max_drawdown": 920, "winrate": 15},
         },
     }
 
