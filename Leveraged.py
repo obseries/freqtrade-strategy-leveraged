@@ -13,7 +13,7 @@ class Leveraged(IStrategy):
 
     minimal_roi = { "0": 100 }
 
-    stoploss = -0.05
+    stoploss = -0.15
 
     trailing_stop = True
 
@@ -22,7 +22,7 @@ class Leveraged(IStrategy):
     timeframe = '1m'
 
 ## INIZIO gestione dual timing
-    informative_timeframe = '15m'
+    informative_timeframe = '5m'
 
     def informative_pairs(self):
         pairs = self.dp.current_whitelist()
@@ -57,14 +57,14 @@ class Leveraged(IStrategy):
     def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
                         current_rate: float, current_profit: float, **kwargs) -> float:
 
-        if current_profit < 0.005:
+        if current_profit < 0.008:
             return -1 # return a value bigger than the initial stoploss to keep using the initial stoploss
 
         # After reaching the desired offset, allow the stoploss to trail by half the profit
         desired_stoploss = current_profit / 2
 
         # Use a minimum of 2.5% and a maximum of 5%
-        return max(min(desired_stoploss, 0.10), 0.015)
+        return max(min(desired_stoploss, 0.10), 0.008)
 
 ### FINE  Trailing stoploss with positive offset
 
